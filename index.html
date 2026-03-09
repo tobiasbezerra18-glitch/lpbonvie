@@ -747,7 +747,7 @@ footer{background:#0D0E1C;padding:64px 5% 0}
         <li class="plan-feature"><span class="fchk"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#2727c8" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Atendimento de emergência em até 72h úteis</li>
         <li class="plan-feature"><span class="fchk"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#2727c8" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>1 laudo técnico anual de conformidade</li>
       </ul>
-      <div class="plan-pricing"><div class="plan-install">12x de <span>R$ 240</span></div><div class="plan-cash">ou à vista R$ 2.880,00</div><a href="https://wa.me/5584921472566?text=Interesse+no+Plano+Básico." target="_blank" class="btn-plan">Começar Agora</a></div>
+      <div class="plan-pricing"><a href="https://wa.me/5584921472566?text=Interesse+no+Plano+Básico." target="_blank" class="btn-plan">Começar Agora</a></div>
     </div>
     <div class="plan-card featured plan-hidden">
       <div class="plan-badge">Mais Popular</div>
@@ -765,7 +765,7 @@ footer{background:#0D0E1C;padding:64px 5% 0}
         <li class="plan-feature"><span class="fchk"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.9)" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>20% desconto no aluguel de equipamento reserva</li>
         <li class="plan-feature"><span class="fchk"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.9)" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>10% desconto em peças de reposição</li>
       </ul>
-      <div class="plan-pricing"><div class="plan-install">12x de <span>R$ 340</span></div><div class="plan-cash">ou à vista R$ 4.080,00</div><a href="https://wa.me/5584921472566?text=Interesse+no+Plano+Intermediário." target="_blank" class="btn-plan">Escolher Plano</a></div>
+      <div class="plan-pricing"><a href="https://wa.me/5584921472566?text=Interesse+no+Plano+Intermediário." target="_blank" class="btn-plan">Escolher Plano</a></div>
     </div>
     <div class="plan-card plan-hidden">
       <div class="plan-lbl">Plano</div><div class="plan-name">Pro</div><div class="plan-divider"></div>
@@ -782,13 +782,20 @@ footer{background:#0D0E1C;padding:64px 5% 0}
         <li class="plan-feature"><span class="fchk"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#2727c8" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>40% desconto no aluguel de equipamento reserva</li>
         <li class="plan-feature"><span class="fchk"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#2727c8" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>20% desconto em peças de reposição</li>
       </ul>
-      <div class="plan-pricing"><div class="plan-install">12x de <span>R$ 572</span></div><div class="plan-cash">ou à vista R$ 6.864,00</div><a href="https://wa.me/5584921472566?text=Interesse+no+Plano+Pro." target="_blank" class="btn-plan">Quero o Melhor</a></div>
+      <div class="plan-pricing"><a href="https://wa.me/5584921472566?text=Interesse+no+Plano+Pro." target="_blank" class="btn-plan">Quero o Melhor</a></div>
     </div>
   </div>
   <p class="plans-note">Todos os planos possuem contrato mínimo de 3 meses. Cancelamento sem multa após o período inicial.</p>
 </section>
 
 <!-- FAQ -->
+<style>
+  .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+  .faq-item.open .faq-a { max-height: 500px; }
+  .faq-item.open .faq-icon svg { transform: rotate(45deg); }
+  .faq-icon svg { transition: transform 0.3s ease; }
+</style>
+
 <section class="faq" id="faq">
   <div class="faq-head reveal">
     <div class="label">Dúvidas Comuns</div>
@@ -810,6 +817,15 @@ footer{background:#0D0E1C;padding:64px 5% 0}
     </a>
   </div>
 </section>
+
+<script>
+  function toggleFaq(btn) {
+    const item = btn.parentElement;
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+</script>
 
 <!-- CONTACT -->
 <section class="contact" id="contact">
