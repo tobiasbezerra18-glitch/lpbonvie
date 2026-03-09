@@ -781,6 +781,13 @@ footer{background:#0D0E1C;padding:64px 5% 0}
 </section>
 
 <!-- FAQ -->
+<style>
+  .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+  .faq-item.open .faq-a { max-height: 500px; }
+  .faq-item.open .faq-icon svg { transform: rotate(45deg); transition: transform 0.3s ease; }
+  .faq-icon svg { transition: transform 0.3s ease; }
+</style>
+
 <section class="faq" id="faq">
   <div class="faq-head reveal">
     <div class="label">Dúvidas Comuns</div>
@@ -802,6 +809,15 @@ footer{background:#0D0E1C;padding:64px 5% 0}
     </a>
   </div>
 </section>
+
+<script>
+  function toggleFaq(btn) {
+    const item = btn.parentElement;
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+</script>
 
 <!-- CONTACT -->
 <section class="contact" id="contact">
