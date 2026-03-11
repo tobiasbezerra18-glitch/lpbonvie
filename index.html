@@ -1015,18 +1015,42 @@ const st=document.getElementById('svcTrack');
 });
 
 // SVC SLIDER ARROWS
-let svcOffset=0;
-function svcSlide(dir){
-  const track=document.getElementById('svcTrack');
-  const cardW=322;
-  track.style.animation='none';
-  svcOffset+=dir*cardW;
-  const maxScroll=-(track.scrollWidth/2 - cardW);
-  if(svcOffset>0)svcOffset=0;
-  if(svcOffset<maxScroll)svcOffset=maxScroll;
-  track.style.transform='translateX('+svcOffset+'px)';
-  track.style.transition='transform .4s cubic-bezier(.4,0,.2,1)';
+let svcOffset = 0;
+let svcAutoInterval = null;
+
+function svcSlide(dir) {
+  const cardW = 322;
+  track.style.animation = "none";
+  svcOffset += dir * cardW;
+  const maxScroll = -(track.scrollWidth / 2 - cardW);
+  if (svcOffset > 0) svcOffset = 0;
+  if (svcOffset < maxScroll) svcOffset = maxScroll;
+  track.style.transform = "translateX(" + svcOffset + "px)";
+  track.style.transition = "transform .4s cubic-bezier(.4,0,.2,1)";
 }
+
+function svcStartAuto() {
+  svcAutoInterval = setInterval(function() {
+    const cardW = 322;
+    const maxScroll = -(track.scrollWidth / 2 - cardW);
+    svcOffset -= cardW;
+    if (svcOffset < maxScroll) svcOffset = 0;
+    track.style.animation = "none";
+    track.style.transform = "translateX(" + svcOffset + "px)";
+    track.style.transition = "transform .5s cubic-bezier(.4,0,.2,1)";
+  }, 3000);
+}
+
+function svcResetAuto() {
+  clearInterval(svcAutoInterval);
+  setTimeout(svcStartAuto, 5000);
+}
+
+document.getElementById("svcPrev").addEventListener("click", svcResetAuto);
+document.getElementById("svcNext").addEventListener("click", svcResetAuto);
+
+svcStartAuto();
+
 
 // VALUES SHUFFLE
 const vals=[
