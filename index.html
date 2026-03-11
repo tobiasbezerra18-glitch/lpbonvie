@@ -427,6 +427,68 @@ footer{background:#0D0E1C;padding:64px 5% 0}
 .svc-arrow-right{right:8px}
 .plan-feature strong{display:inline;font-size:inherit;font-weight:800;color:inherit}</style>
 </head>
+  <!-- Timeline slider -->
+  <script>
+      (function () {
+        const track   = document.getElementById('tlTrack');
+        const prog    = document.getElementById('tlProg');
+        const counter = document.getElementById('tlCounter');
+        const prevBtn = document.getElementById('tlPrev');
+        const nextBtn = document.getElementById('tlNext');
+        const dotsWrap = document.getElementById('tlDots');
+
+        const total = track ? track.children.length : 6;
+        let current = 0;
+
+        for (let i = 0; i < total; i++) {
+          const d = document.createElement('div');
+          d.className = 'tl-dot' + (i === 0 ? ' active' : '');
+          d.addEventListener('click', () => tlGo(i - current));
+          dotsWrap.appendChild(d);
+        }
+
+        function updateRing(index) {
+          const rings = track.querySelectorAll('.tl-ring');
+          rings.forEach((r, i) => {
+            if (i === index) r.classList.add('anim');
+          });
+        }
+
+        function render() {
+          track.style.transform = `translateX(-${current * 100}%)`;
+          prog.style.width = `${((current + 1) / total) * 100}%`;
+          counter.textContent =
+            String(current + 1).padStart(2, '0') + ' / ' + String(total).padStart(2, '0');
+          dotsWrap.querySelectorAll('.tl-dot').forEach((d, i) => {
+            d.classList.toggle('active', i === current);
+          });
+          prevBtn.disabled = current === 0;
+          nextBtn.disabled = current === total - 1;
+          updateRing(current);
+        }
+
+        window.tlGo = function (dir) {
+          const next = current + dir;
+          if (next < 0 || next >= total) return;
+          current = next;
+          render();
+        };
+
+        document.addEventListener('keydown', e => {
+          if (e.key === 'ArrowRight') tlGo(1);
+          if (e.key === 'ArrowLeft')  tlGo(-1);
+        });
+
+        let tx = 0;
+        track.addEventListener('touchstart', e => { tx = e.touches[0].clientX; });
+        track.addEventListener('touchend', e => {
+          const diff = tx - e.changedTouches[0].clientX;
+          if (Math.abs(diff) > 50) tlGo(diff > 0 ? 1 : -1);
+        });
+
+        render();
+      })();
+    </script>
 <body>
 <div id="cg"></div><div id="cd"></div>
 
