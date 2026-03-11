@@ -139,6 +139,25 @@ nav.scrolled{background:rgba(13,14,28,.88);backdrop-filter:blur(16px);border-bot
 .why-stat-label{font-size:.92rem;color:rgba(255,255,255,.55);font-weight:700;margin-top:14px;letter-spacing:.3px;position:relative;z-index:1}
 .why-stat-icon{width:44px;height:44px;background:rgba(37,211,102,.12);border:1px solid rgba(37,211,102,.2);border-radius:12px;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;position:relative;z-index:1;transition:transform .3s}
 .why-stat:hover .why-stat-icon{transform:scale(1.1) rotate(-6deg)}
+@media (max-width: 768px) {
+  .why-stats-row {
+    grid-template-columns: 1fr;
+  }
+
+  .why-stat {
+    border-right: none;
+    border-bottom: 1px solid rgba(255,255,255,.07);
+    padding: 36px 20px;
+  }
+
+  .why-stat:last-child {
+    border-bottom: none;
+  }
+
+  .stat-num {
+    font-size: 3.5rem;
+  }
+}
 
 /* RISKS — medium blue */
 .risks{background:linear-gradient(160deg,#2727c8,#2727c8,#2727c8);padding:100px 5%;position:relative;overflow:hidden}
