@@ -2928,7 +2928,7 @@ if (fluxoScroll) {
   fluxoScroll.addEventListener('mousedown', e => { isDragging = true; startX = e.pageX - fluxoScroll.offsetLeft; scrollLeft = fluxoScroll.scrollLeft; fluxoScroll.style.cursor = 'grabbing'; });
   fluxoScroll.addEventListener('mouseleave', () => { isDragging = false; fluxoScroll.style.cursor = 'grab'; });
   fluxoScroll.addEventListener('mouseup', () => { isDragging = false; fluxoScroll.style.cursor = 'grab'; });
-  fluxoScroll.addEventListener('mousemove', e => { if (!isDragging) return; e.preventDefault(); const x = e.pageX - fluxoScroll.offsetLeft; const walk = (x - startX) * 2; fluxoScroll.scrollLeft = scrollLeft - walk; });
+  fluxoScroll.addEventListener('mousemove', e => { if (!isDragging) return; const x = e.pageX - fluxoScroll.offsetLeft; const walk = (x - startX) * 2; fluxoScroll.scrollLeft = scrollLeft - walk; });
 
   // Mobile touch drag
   let touchStartX = 0, touchScrollLeft = 0;
