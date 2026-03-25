@@ -1,8 +1,7 @@
 <!DOCTYPE html>
-<!-- saved from url=(0029)#planos -->
-<html lang="pt-BR"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<html lang="pt-BR"><head><meta charset="UTF-8">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
 <title>Bonvie — Manutenção Odontológica Especializada</title>
 <link rel="icon" type="image/png" href="bonvie_logo_transparent.png">
 <style>
@@ -145,9 +144,27 @@ nav {
   height: 42px;
   width: auto;
 }
-.nav-links { display: flex; gap: 34px; list-style: none; }
+.nav-links { display: flex; gap: 34px; list-style: none; margin: 0; padding: 0; }
 .nav-links a { font-size: 14px; color: var(--muted); text-decoration: none; font-weight: 500; transition: color 0.2s; }
 .nav-links a:hover { color: #fff; }
+
+.mobile-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  z-index: 10001;
+}
+.mobile-toggle .bar {
+  width: 25px;
+  height: 2px;
+  background: #fff;
+  border-radius: 2px;
+  transition: 0.3s;
+}
 .nav-cta {
   display: inline-flex; align-items: center; gap: 8px;
   background: var(--green); color: #fff;
@@ -1116,6 +1133,574 @@ footer {
 .spotlight-card { position: relative; }
 .spotlight-card::after { content: ''; position: absolute; inset: 0; background: radial-gradient(circle 180px at var(--mx,50%) var(--my,50%), rgba(255,255,255,0.06) 0%, transparent 70%); opacity: 0; transition: opacity 0.3s; pointer-events: none; border-radius: inherit; }
 .spotlight-card:hover::after { opacity: 1; }
+
+/* ══════════════════════════════════════════
+   RESPONSIVIDADE MOBILE
+══════════════════════════════════════════ */
+
+/* ── GLOBAL OVERFLOW FIX ── */
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+* {
+  min-width: 0;
+}
+
+/* Touch targets mínimos */
+a, button, .faq-q, .sobre-tab, .plano-cta, .btn-primary, .btn-outline, .nav-cta {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+@media (max-width: 768px) {
+  :root {
+    --px: 18px;
+    --px-lg: 18px;
+  }
+
+  /* ── PREVENT OVERFLOW ── */
+  section, .container, .compliance-inner,
+  .anvisa-proof, .riscos-grid, .planos-grid,
+  .story-stats, .fluxo-header, .fluxo-track,
+  .met-sticky-left, .met-sticky-right {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV MOBILE ── */
+  nav {
+    padding: 14px var(--px);
+  }
+
+  .mobile-toggle {
+    display: flex;
+  }
+
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 100%;
+    height: 100vh;
+    background: rgba(8, 8, 42, 0.98);
+    backdrop-filter: blur(15px);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 10000;
+    padding: 40px;
+    list-style: none;
+  }
+
+  .nav-links.active {
+    right: 0;
+  }
+
+  .nav-links li {
+    width: 100%;
+    text-align: center;
+  }
+
+  .nav-links a {
+    font-size: 22px;
+    color: #fff;
+    display: block;
+    padding: 12px 0;
+    min-height: 48px;
+    line-height: 1.4;
+  }
+
+  .nav-cta {
+    display: none;
+  }
+
+  .nav-links .nav-cta {
+    display: flex !important;
+    margin-top: 20px;
+    font-size: 15px;
+    padding: 14px 28px;
+    min-width: 200px;
+    justify-content: center;
+  }
+
+  .mobile-toggle.active .bar:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+
+  .mobile-toggle.active .bar:nth-child(2) {
+    opacity: 0;
+  }
+
+  .mobile-toggle.active .bar:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  /* ── HERO MOBILE ── */
+  .hero {
+    padding: 100px var(--px) 80px;
+    min-height: auto;
+    overflow: hidden;
+  }
+
+  .hero-inner {
+    flex-direction: column;
+    text-align: center;
+    gap: 0;
+    max-width: 100%;
+  }
+
+  .location-badge {
+    font-size: 10px;
+    padding: 6px 14px;
+    margin-bottom: 24px;
+  }
+
+  .hero-heading {
+    font-size: clamp(30px, 10vw, 44px);
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    margin-bottom: 18px;
+  }
+
+  .hero-sub {
+    font-size: 15px;
+    line-height: 1.6;
+    margin: 0 auto 28px;
+    max-width: 100%;
+    padding: 0;
+  }
+
+  .cta-row {
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    gap: 12px;
+    margin-bottom: 40px;
+  }
+
+  .btn-primary,
+  .btn-outline {
+    width: 100%;
+    justify-content: center;
+    padding: 16px 20px;
+    font-size: 15px;
+    border-radius: 12px;
+    min-height: 52px;
+  }
+
+  .btn-lg {
+    padding: 16px 20px !important;
+    font-size: 15px !important;
+  }
+
+  .hero-right {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    transform: none;
+    margin-top: 0;
+  }
+
+  .mockup-device {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    min-height: 380px;
+    margin: 0 auto;
+  }
+
+  .float-card {
+    display: none !important;
+  }
+
+  .hero-orb1,
+  .hero-orb2 {
+    display: none;
+  }
+
+  /* Marquee strip */
+  .strip-track {
+    padding: 10px var(--px);
+  }
+
+  /* ── SOBRE MOBILE ── */
+  .sobre {
+    padding: 80px var(--px) 60px;
+    gap: 40px;
+  }
+
+  .sobre-header h2 {
+    font-size: clamp(28px, 8vw, 40px);
+  }
+
+  .sobre-tabs {
+    flex-direction: row;
+    gap: 0;
+    width: 100%;
+    border-bottom: 0.5px solid #e0e0e0;
+  }
+
+  .sobre-tab {
+    flex: 1;
+    padding: 10px 8px;
+    font-size: 13px;
+    text-align: center;
+    min-height: 44px;
+  }
+
+  .stage {
+    flex-direction: column;
+    gap: 24px;
+    min-height: auto;
+  }
+
+  .side {
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .feat {
+    flex: 1;
+    min-width: 140px;
+  }
+
+  .central {
+    width: 100%;
+    max-width: 100%;
+    transform: none !important;
+    margin: 0;
+  }
+
+  /* ── FLUXO MOBILE ── */
+  .fluxo-section {
+    padding: 80px 0;
+  }
+
+  .fluxo-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 0 var(--px);
+    margin-bottom: 36px;
+  }
+
+  .fluxo-header h2 {
+    font-size: clamp(26px, 7vw, 38px);
+  }
+
+  .fluxo-scroll-wrap {
+    padding: 10px var(--px) 10px;
+  }
+
+  .fluxo-card {
+    width: 280px;
+    min-width: 280px;
+  }
+
+  .fluxo-card-preview {
+    height: 180px;
+  }
+
+  /* ── COMPLIANCE MOBILE ── */
+  .compliance-section {
+    padding: 80px var(--px);
+  }
+
+  .compliance-header h2 {
+    font-size: clamp(26px, 7vw, 40px);
+  }
+
+  .story-stats {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+
+  .story-stat {
+    padding: 28px 24px;
+  }
+
+  .stat-number-big {
+    font-size: clamp(44px, 12vw, 64px);
+  }
+
+  .anvisa-proof {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    padding: 32px 24px;
+  }
+
+  .anvisa-proof-left h3 {
+    font-size: 22px;
+  }
+
+  .anvisa-doc-mockup {
+    padding: 20px;
+  }
+
+  /* ── RISCOS MOBILE ── */
+  .riscos {
+    padding: 80px var(--px);
+  }
+
+  .riscos-header h2 {
+    font-size: clamp(26px, 7vw, 40px);
+  }
+
+  .riscos-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .risco-card {
+    width: 100%;
+    transform: none !important;
+    padding: 26px 22px;
+  }
+
+  /* ── SERVIÇOS MOBILE ── */
+  .servicos {
+    padding: 80px 0;
+  }
+
+  .servicos-header {
+    padding: 0 var(--px);
+  }
+
+  .servicos-header h2 {
+    font-size: clamp(26px, 7vw, 40px);
+  }
+
+  .serv-card {
+    width: 240px;
+    min-width: 240px;
+    padding: 24px 20px;
+  }
+
+  .serv-nav {
+    display: none;
+  }
+
+  /* ── METODOLOGIA MOBILE ── */
+  .metodologia-sticky {
+    display: flex;
+    flex-direction: column;
+    min-height: auto;
+    grid-template-columns: unset;
+  }
+
+  .met-sticky-left {
+    position: relative;
+    height: auto;
+    padding: 60px var(--px) 36px;
+    top: unset;
+  }
+
+  .met-sticky-right {
+    padding: 0 var(--px) 60px;
+  }
+
+  .met-panel {
+    min-height: auto;
+    padding: 36px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .met-panel:last-child {
+    border-bottom: none;
+  }
+
+  .met-steps-nav {
+    display: none;
+  }
+
+  .met-panel-mockup {
+    max-width: 100%;
+  }
+
+  .met-sticky-title {
+    font-size: clamp(26px, 7vw, 38px);
+  }
+
+  .met-panel h3 {
+    font-size: clamp(22px, 6vw, 32px);
+  }
+
+  .pay-row .pay-label,
+  .pay-row .pay-value {
+    font-size: 12px;
+  }
+
+  .pay-total-val {
+    font-size: 17px;
+  }
+
+  /* ── GARANTIA MOBILE ── */
+  .garantia {
+    padding: 80px var(--px);
+  }
+
+  .garantia-card {
+    padding: 40px 24px;
+  }
+
+  .garantia-card h2 {
+    font-size: 26px;
+  }
+
+  .gar-pills {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .gar-pill {
+    justify-content: flex-start;
+    min-height: 44px;
+  }
+
+  /* ── PLANOS MOBILE ── */
+  .planos {
+    padding: 80px var(--px);
+  }
+
+  .planos-header h2 {
+    font-size: clamp(26px, 7vw, 40px);
+  }
+
+  .planos-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .plano-card {
+    width: 100%;
+    transform: none !important;
+    padding: 32px 24px;
+  }
+
+  .plano-card.popular {
+    margin: 0;
+    order: -1;
+  }
+
+  /* ── FAQ MOBILE ── */
+  .faq {
+    padding: 80px var(--px);
+  }
+
+  .faq-header h2 {
+    font-size: clamp(26px, 7vw, 40px);
+  }
+
+  .faq-q {
+    padding: 18px 20px;
+    font-size: 14px;
+    min-height: 56px;
+  }
+
+  .faq-a-inner {
+    padding: 0 20px 20px;
+    font-size: 14px;
+  }
+
+  /* ── CTA FINAL MOBILE ── */
+  .cta-final {
+    padding: 80px var(--px);
+  }
+
+  .cta-final h2 {
+    font-size: clamp(28px, 8vw, 44px);
+  }
+
+  .cta-final-btns {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .cta-final-btns .btn-primary,
+  .cta-final-btns .btn-outline {
+    width: 100%;
+  }
+
+  /* ── FOOTER MOBILE ── */
+  footer {
+    flex-direction: column;
+    text-align: center;
+    padding: 50px var(--px);
+    gap: 28px;
+  }
+
+  .footer-links {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+  }
+
+  .footer-links a {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  /* ── WA FAB MOBILE ── */
+  .wa-fab {
+    bottom: 20px;
+    right: 16px;
+  }
+
+  .wa-fab-tooltip {
+    display: none;
+  }
+
+  .wa-fab-circle {
+    width: 52px;
+    height: 52px;
+  }
+}
+
+/* ── SMALL PHONES (< 400px) ── */
+@media (max-width: 400px) {
+  :root {
+    --px: 16px;
+  }
+
+  .hero-heading {
+    font-size: 28px;
+  }
+
+  .mockup-device {
+    max-width: 280px;
+    min-height: 340px;
+  }
+
+  .side {
+    flex-direction: column;
+  }
+
+  .feat {
+    min-width: unset;
+    width: 100%;
+  }
+
+  .plano-card {
+    padding: 24px 18px;
+  }
+
+  .garantia-card {
+    padding: 32px 18px;
+  }
+
+  .anvisa-proof {
+    padding: 24px 16px;
+  }
+}
 </style>
   <script src="./Bonvie — Manutenção Odontológica Especializada_files/lucide@latest"></script>
   <style>
@@ -1164,12 +1749,19 @@ footer {
 <a href="#" class="nav-logo">
     <img src="./Bonvie — Manutenção Odontológica Especializada_files/bonvie_logo_transparent.png" alt="Bonvie Logo">
   </a>
+  
+  <button class="mobile-toggle" id="mobile-toggle" aria-label="Abrir menu">
+    <span class="bar"></span>
+    <span class="bar"></span>
+    <span class="bar"></span>
+  </button>
+
   <ul class="nav-links">
-    <li><a href="#sobre" style="">Sobre</a></li>
-    <li><a href="#fluxo" style="">Fluxo</a></li>
-    <li><a href="#servicos" style="">Serviços</a></li>
-    <li><a href="#planos" style="">Planos</a></li>
-    <li><a href="#faq" style="color: rgb(255, 255, 255);">FAQ</a></li>
+    <li><a href="#sobre">Sobre</a></li>
+    <li><a href="#fluxo">Fluxo</a></li>
+    <li><a href="#servicos">Serviços</a></li>
+    <li><a href="#planos">Planos</a></li>
+    <li><a href="#faq">FAQ</a></li>
   </ul>
   <a href="https://wa.me/5584921731872" class="nav-cta">
     <svg viewBox="0 0 24 24" fill="#ffffff" width="19" height="19" style="flex-shrink:0"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"></path></svg>
@@ -2533,6 +3125,28 @@ if (sTrack && sPrev && sNext) {
 }
 
 lucide.createIcons();
+
+// ── MOBILE MENU TOGGLE ──
+const mobileToggle = document.getElementById('mobile-toggle');
+const navLinksWrap = document.querySelector('.nav-links');
+const navLinksItems = document.querySelectorAll('.nav-links a');
+
+if (mobileToggle) {
+  mobileToggle.addEventListener('click', () => {
+    mobileToggle.classList.toggle('active');
+    navLinksWrap.classList.toggle('active');
+    document.body.style.overflow = navLinksWrap.classList.contains('active') ? 'hidden' : '';
+  });
+}
+
+// Close menu when clicking a link
+navLinksItems.forEach(item => {
+  item.addEventListener('click', () => {
+    mobileToggle.classList.remove('active');
+    navLinksWrap.classList.remove('active');
+    document.body.style.overflow = '';
+  });
+});
 </script>
 
 
